@@ -1,0 +1,51 @@
+About
+-----
+
+This is just a sample structure for JavaScript testing with QUnit and Sinon. I find a pain in the ass starting those so I created this project with a basic start up for JavaScript tests.
+
+For more information on those see:
+
+- http://docs.jquery.com/Qunit
+- http://sinonjs.org
+
+Project Structure
+-----------------
+
+css 
+---
+Css directory ships QUnit's original css file
+
+lib 
+----
+Lib directory ships with required javascript files for Qunit and Sinon. jQuery is being loaded using jQuery's CDN.
+
+suite.html
+----------
+
+Sample structure of a QUnit html test suite with all required files being loaded.
+
+There are comments to help you place both you production and test scripts.
+
+Additionally to the basic QUnit markup there's also a div#qunit-fixture where you can add any needed markups. This div's content get's cleaned up by QUnit so you don't have to worry about your tests leaving garbage behind.
+
+Sample directory
+----------------
+This is my sample's sample :) Not a real project but I'll be adding examples on Sinon and QUnit tests. For now there you will find:
+
+- How to stub an ajax call?
+- How to mock a jQuery animation?
+
+If you are using these frameworks for testing and would like to help contributing with more examples feel free to do so!
+
+More to Come
+------------
+
+Next steps are:
+
+- Setting up JS Coverage for your tests
+- Scripts to help add javascript testing to your Continuous Integration. I'm thinking Selenium or other browsing testing tool and well and a simple URL script.
+
+
+
+
+
