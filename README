@@ -43,7 +43,7 @@ More to Come
 Next steps are:
 
 - Setting up JS Coverage for your tests
-- Scripts to help add javascript testing to your Continuous Integration. I'm thinking Selenium or other browsing testing tool and well and a simple URL script.
+- Scripts to help add javascript testing to your Continuous Integration. I'm thinking Selenium or other browsing testing tool.
 
 
 
