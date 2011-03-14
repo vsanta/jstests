@@ -13,11 +13,11 @@ Project Structure
 
 css 
 ---
-Css directory ships QUnit's original css file
+Css folder ships QUnit's original css file
 
 lib 
 ----
-Lib directory ships with required javascript files for Qunit and Sinon. jQuery is being loaded using jQuery's CDN.
+Lib folder ships with required javascript files for Qunit and Sinon. jQuery is being loaded using jQuery's CDN.
 
 suite.html
 ----------
@@ -28,7 +28,7 @@ There are comments to help you place both you production and test scripts.
 
 Additionally to the basic QUnit markup there's also a div#qunit-fixture where you can add any needed markups. This div's content get's cleaned up by QUnit so you don't have to worry about your tests leaving garbage behind.
 
-Sample directory
+Sample folder
 ----------------
 This is my sample's sample :) Not a real project but I'll be adding examples on Sinon and QUnit tests. For now there you will find:
 
@@ -37,15 +37,49 @@ This is my sample's sample :) Not a real project but I'll be adding examples on 
 
 If you are using these frameworks for testing and would like to help contributing with more examples feel free to do so!
 
+Running tests with Selenium
+---------------------------
+
+On automated_testing folder there's a template file to have our JavaScript test evaluated by Selenium. Written in ruby, this sample has a method to validate that all tests passed.
+
+I did this because I think it makes it very simple to add to my CI server.
+
+Dependencies
+-----------
+To run this you will need
+
+- ruby 1.8.7 (haven't tested it with ruby 1.9 yet)
+- run: gem install selenium-client
+
+Important Notice
+---------------
+In order to implement a more reliable validation for the tests results I decided to use Selenium's wait_for_condition where a JavaScript expression is used. If it returns true than Selenium continues, if not you get a TimeOut.
+
+QUnit does not provide a method or a variable to let us know if it's done processing all tests but it does have an organized lifecycle so I patched qunit.js from the lib folder and now we can access QUnit.suite_done which returns a boolean.
+
+If you don't want to have a patched version of QUnit you can just delete the following line from the method assert_all_qunit_pass in the Selenium runner.
+
+@selenium.wait_for_condition 'selenium.browserbot.getCurrentWindow().QUnit.suite_done', timeout
+
+You may use wait_for_element or some other condition you prefer.
+
+Running sample's sample
+-----------------------
+
+I needed a very simple HTTP server just to serve my sample-suite.html. For that I used python's SimpleHTTPServer. To run the server execute:
+
+$ python -m SimpleHTTPServer 8000
+
+This will have your current folder's files served so make sure you run it in the project's root folder.
+
+After that just run:
+
+$ ruby sample/selenium/sample_test.rb
+
+
 More to Come
 ------------
 
 Next steps are:
 
 - Setting up JS Coverage for your tests
-- Scripts to help add javascript testing to your Continuous Integration. I'm thinking Selenium or other browsing testing tool.
-
-
-
-
-
